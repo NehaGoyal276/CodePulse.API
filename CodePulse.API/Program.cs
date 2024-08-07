@@ -1,6 +1,7 @@
 using CodePulse.API.Data;
 using CodePulse.API.Repositories.Implementation;
 using CodePulse.API.Repositories.Interface;
+using Microsoft.AspNetCore.Builder;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -28,6 +29,13 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
+
+app.UseCors(
+    options => {
+        options.AllowAnyHeader();
+        options.AllowAnyOrigin();
+        options.AllowAnyMethod();
+    });
 
 app.UseAuthorization();
 
